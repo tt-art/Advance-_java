@@ -1,0 +1,62 @@
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+    <table>
+        <tr>
+        <td>enter name</td>
+        <td><input type="text" name="name" id=""></td>
+    </tr>
+    <tr>
+        <td>enter email</td>
+        <td><input type="email" name="name" id=""></td>
+    </tr>
+    <tr>
+        <td>enter phone</td>
+        <td><input type="number" name="name" id=""></td>
+    </tr>
+    <tr><td><input type="button" value="submit" name="btn"></td></tr>
+</table>
+    </form>
+    
+</body>
+</html>
+<% 
+String btn=request.getParameter("btn");
+if(btn!=null)
+{
+    try{
+        String name=request.getParameter("name");
+        int phone=Integer.parseInt(request.getParameter("phone"));
+        String email=request.getParameter("email");
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con = DriverManager.getConnection ("jdbc:mysql://localhost:3306/demo", "root","");
+        PreparedStatement psmt=con.prepareStatement("insert into demo values(?,?,?)");
+        psmt.setString(1,name);
+        psmt.setString(2,email);
+        psmt.setInt(3,phone);
+        
+        int cnt=psmt.executeUpdate();
+        if(cnt>0)
+        {
+            out.println("record inserted");
+
+        }
+        else{
+            out.println("record not inserted");
+        }
+    }
+    catch(Exception e)
+    {
+        out.println(e);
+
+    }
+}
+%>

@@ -1,0 +1,36 @@
+import java.io.*;
+class upper
+{
+    public static void main(String s[])
+    {
+        try{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("enter String");
+        String str=br.readLine();
+        String a=str.toUpperCase();
+        String b=str.toLowerCase();
+        String temp="";
+        int i=0;
+        System.out.println(str.length());
+        for( i=0;i<str.length()-1;i++);
+        {
+            if(i%2==0)
+            {
+                temp=temp+""+a.charAt(i);
+
+            }
+            else{
+                temp=temp+""+b.charAt(i);
+
+            }
+        }
+        System.out.println(temp);
+
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
